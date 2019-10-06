@@ -1,3 +1,3 @@
 "use strict";
-console.log('Works!');
+console.log('Hello World!');
 //# sourceMappingURL=index.js.map
