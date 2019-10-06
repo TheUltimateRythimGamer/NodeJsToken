@@ -9,10 +9,12 @@ const app : Application = express();
  */
 app.set('port', 4000);
 
+
 /**
  * Middlewares
  */
 app.use(morgan('dev'));
+app.use(express.json());
 
 /**
  * Routers 

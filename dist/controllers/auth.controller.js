@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SingUp = (req, res) => {
+    console.log(req.body);
     res.send('Sign Up');
 };
 exports.SingIn = (req, res) => {

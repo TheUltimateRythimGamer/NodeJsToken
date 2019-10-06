@@ -15,6 +15,7 @@ app.set('port', 4000);
  * Middlewares
  */
 app.use(morgan_1.default('dev'));
+app.use(express_1.default.json());
 /**
  * Routers
  */
