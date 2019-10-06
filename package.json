@@ -1,0 +1,19 @@
+{
+  "name": "nodejstoken",
+  "version": "1.0.0",
+  "description": "NodeJsToken",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JossJoestar/NodeJsToken.git"
+  },
+  "author": "Joss Joestar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JossJoestar/NodeJsToken/issues"
+  },
+  "homepage": "https://github.com/JossJoestar/NodeJsToken#readme"
+}
