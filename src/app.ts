@@ -2,6 +2,8 @@ import express, {Application} from "express";
 import morgan from "morgan";
 import authRoutes from "./routes/auth";
 
+
+
 const app : Application = express();
 
 /**

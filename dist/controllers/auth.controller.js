@@ -1,9 +1,30 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SingUp = (req, res) => {
-    console.log(req.body);
-    res.send('Sign Up');
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const User_1 = __importDefault(require("../models/User"));
+const chalk = require('chalk');
+exports.SingUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = new User_1.default({
+        userName: req.body.userName,
+        email: req.body.email,
+        password: req.body.password
+    });
+    console.log(chalk.bold.blue(user));
+    const savedUser = yield user.save();
+    console.log(chalk.bold.yellow(savedUser));
+    res.send('Sign Up');
+});
 exports.SingIn = (req, res) => {
     res.send('Sign In');
 };

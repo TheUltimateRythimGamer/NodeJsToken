@@ -1,8 +1,21 @@
 import { Request, Response } from "express";
+import User, {IUser} from "../models/User";
 
-export const SingUp = (req: Request, res: Response) => {
-	console.log(req.body);
-	
+const chalk = require('chalk');
+
+
+
+export const SingUp = async (req: Request, res: Response) => {
+
+	const user: IUser = new User({
+		userName : req.body.userName,
+		email: req.body.email,
+		password : req.body.password
+	});
+
+	console.log(chalk.bold.blue(user));
+	const savedUser = await user.save();
+	console.log(chalk.bold.yellow(savedUser));
 	res.send('Sign Up');
 };
 export const SingIn = (req: Request, res: Response) => {
