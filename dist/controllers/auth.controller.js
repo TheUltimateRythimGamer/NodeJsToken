@@ -24,17 +24,27 @@ exports.SingUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         email: req.body.email,
         password: req.body.password
     });
+    user.password = yield user.encryptPassword(user.password);
     const savedUser = yield user.save();
     console.log(chalk.bold.yellow(savedUser));
     /**
      * Creating a token
      */
     const token = jsonwebtoken_1.default.sign({ _id: savedUser._id }, process.env.TOKEN_SECRET || 'tokentest');
-    res.json(token);
+    res.header('auth-token', token).json(savedUser);
 });
-exports.SingIn = (req, res) => {
-    res.send('Sign In');
-};
+exports.SingIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield User_1.default.findOne({ email: req.body.email });
+    if (!user)
+        return res.status(400).json('Email or password is wrong');
+    const correctPassword = yield user.validatePassword(req.body.password);
+    if (!correctPassword)
+        return res.status(400).json('Invalid password');
+    const token = jsonwebtoken_1.default.sign({ _id: user._id }, process.env.TOKEN_SECRET || 'tokentest', {
+        expiresIn: 60 * 60 * 24
+    });
+    res.header('auth-token', token).json(user);
+});
 exports.ViewProfile = (req, res) => {
     res.send('Profile');
 };
