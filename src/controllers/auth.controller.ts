@@ -41,6 +41,8 @@ export const SingIn = async (req: Request, res: Response) => {
 	});
 	res.header('auth-token', token).json(user);
 };
-export const ViewProfile = (req: Request, res: Response) => {
-	res.send('Profile')
+export const ViewProfile = async (req: Request, res: Response) => {
+	const user = await User.findById(req.userId, {password : 0})
+	if(!user) return res.status(404).json('No user found');
+	res.json(user)
 };

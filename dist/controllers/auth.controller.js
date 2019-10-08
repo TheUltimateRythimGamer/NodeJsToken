@@ -45,7 +45,10 @@ exports.SingIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     res.header('auth-token', token).json(user);
 });
-exports.ViewProfile = (req, res) => {
-    res.send('Profile');
-};
+exports.ViewProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield User_1.default.findById(req.userId, { password: 0 });
+    if (!user)
+        return res.status(404).json('No user found');
+    res.json(user);
+});
 //# sourceMappingURL=auth.controller.js.map
